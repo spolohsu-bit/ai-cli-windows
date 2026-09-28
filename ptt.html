@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>練習二：PTT 爬蟲</title>
+<style>
+:root{--bg:#fafaf8;--fg:#1f2328;--muted:#5d6570;--card:#fff;--line:#e3e3de;--code:#f2f2ee;--accent:#0b6bcb;--warn:#fff6e0;--warnline:#e8c46a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e6e6e3;--muted:#9aa1ab;--card:#1d2024;--line:#2e3238;--code:#262a2f;--accent:#5aa7f0;--warn:#2d2718;--warnline:#8a7230}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 -apple-system,"Segoe UI","Microsoft JhengHei","PingFang TC",sans-serif}
+main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.7rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 28px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 20px 12px;margin:0 0 18px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h2 .tag{font-size:.8rem;font-weight:500;color:var(--muted);margin-left:6px}
+p,li{margin:6px 0}
+ol,ul{padding-left:22px}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font:14px/1.5 Consolas,"SF Mono",monospace}
+.cmd{position:relative;margin:10px 0 14px}
+.cmd pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:12px 70px 12px 14px;margin:0;overflow-x:auto;font:14px/1.6 Consolas,"SF Mono",monospace;white-space:pre}
+.cmd button{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:6px;padding:3px 10px;font-size:13px;cursor:pointer}
+.note{background:var(--warn);border-left:4px solid var(--warnline);border-radius:6px;padding:10px 14px;margin:10px 0}
+a{color:var(--accent);word-break:break-all}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{border-top:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+footer{color:var(--muted);font-size:13px;margin-top:24px}
+.prompt pre{white-space:pre-wrap;font-family:-apple-system,"Segoe UI","Microsoft JhengHei",sans-serif;font-size:15px}
+nav.top{margin:0 0 18px;font-size:15px}
+</style>
+</head>
+<body>
+<main>
+<nav class="top"><a href="./">安裝說明</a>・<a href="2048.html">練習一：網頁版 2048</a>・<a href="ptt.html">練習二：PTT 爬蟲</a></nav>
+<h1>練習二：叫 AI CLI 寫 PTT 爬蟲</h1>
+<p class="sub">這次 AI 不只寫程式，還會自己安裝套件、自己執行、看到錯誤自己修。你負責說清楚要什麼，然後檢查結果對不對。</p>
+
+<section>
+<h2>0. 準備</h2>
+<div class="cmd"><pre>mkdir $HOME\Desktop\ptt
+cd $HOME\Desktop\ptt</pre><button>複製</button></div>
+<p>啟動 <code>agy</code>、<code>codex</code> 或 <code>opencode</code>。</p>
+<div class="note">電腦要先裝好 Python。AI 說找不到 Python 的話，到 python.org 下載安裝，安裝畫面第一頁要勾 <strong>Add python.exe to PATH</strong>。</div>
+</section>
+
+<section>
+<h2>關卡 1：抓一頁</h2>
+<div class="cmd prompt"><pre>寫一支 Python 程式 ptt.py，抓 PTT 電影版 https://www.ptt.cc/bbs/movie/index.html 這一頁每篇文章的標題、推文數、作者、日期，印在畫面上。需要的套件請幫我安裝，寫完直接執行給我看。</pre><button>複製</button></div>
+<p>用瀏覽器打開同一個網址，對照 AI 抓到的標題對不對。</p>
+</section>
+
+<section>
+<h2>關卡 2：往前翻頁、存成 Excel 打得開的檔案</h2>
+<div class="cmd prompt"><pre>改成從最新一頁往前抓 5 頁，每抓一頁暫停 1 秒。結果存成 movie.csv，要能用 Excel 直接打開、中文不會變亂碼。</pre><button>複製</button></div>
+<p>用 Excel 打開 <code>movie.csv</code>，檢查有沒有亂碼、筆數對不對。</p>
+<div class="note">不要一次抓幾百頁。抓太快、太多會被 PTT 擋。</div>
+</section>
+
+<section>
+<h2>關卡 3：分析並畫圖</h2>
+<div class="cmd prompt"><pre>寫 analyze.py 讀 movie.csv，算出標題裡 [好雷]、[普雷]、[負雷]、[新聞]、[請益] 各有幾篇，畫成長條圖存成 chart.png，然後打開圖片給我看。</pre><button>複製</button></div>
+<p>如果圖上的中文變成一格一格的方框，不要自己查。直接跟 AI 說：</p>
+<div class="cmd prompt"><pre>圖上的中文變成方框了，請修好。</pre><button>複製</button></div>
+<p>看它怎麼找出原因、怎麼修。</p>
+</section>
+
+<section>
+<h2>關卡 4：換一個看板</h2>
+<div class="cmd prompt"><pre>把 ptt.py 改成可以指定看板和頁數，例如 python ptt.py Stock 3 就是抓股票版 3 頁。</pre><button>複製</button></div>
+<p>挑一個你有興趣的看板（Baseball、NBA、Tech_Job、Food……），抓下來之後，請 AI 幫你從資料裡找出一個有趣的發現。</p>
+</section>
+
+<section>
+<h2>想一想</h2>
+<ul>
+<li>AI 哪一次自己發現錯誤、自己修好？它怎麼知道錯了？</li>
+<li>AI 說「完成了」的時候，你怎麼確認結果真的是對的？</li>
+</ul>
+</section>
+<footer>中華大學・徐聖訓老師</footer>
+</main>
+<script>
+document.querySelectorAll(".cmd button").forEach(function(b){
+  b.addEventListener("click",function(){
+    var t=b.previousElementSibling.textContent;
+    navigator.clipboard.writeText(t).then(function(){b.textContent="已複製";setTimeout(function(){b.textContent="複製"},1500)});
+  });
+});
+</script>
+</body>
+</html>

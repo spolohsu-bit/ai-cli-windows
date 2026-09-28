@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>練習一：網頁版 2048</title>
+<style>
+:root{--bg:#fafaf8;--fg:#1f2328;--muted:#5d6570;--card:#fff;--line:#e3e3de;--code:#f2f2ee;--accent:#0b6bcb;--warn:#fff6e0;--warnline:#e8c46a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e6e6e3;--muted:#9aa1ab;--card:#1d2024;--line:#2e3238;--code:#262a2f;--accent:#5aa7f0;--warn:#2d2718;--warnline:#8a7230}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 -apple-system,"Segoe UI","Microsoft JhengHei","PingFang TC",sans-serif}
+main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.7rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 28px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 20px 12px;margin:0 0 18px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h2 .tag{font-size:.8rem;font-weight:500;color:var(--muted);margin-left:6px}
+p,li{margin:6px 0}
+ol,ul{padding-left:22px}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font:14px/1.5 Consolas,"SF Mono",monospace}
+.cmd{position:relative;margin:10px 0 14px}
+.cmd pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:12px 70px 12px 14px;margin:0;overflow-x:auto;font:14px/1.6 Consolas,"SF Mono",monospace;white-space:pre}
+.cmd button{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:6px;padding:3px 10px;font-size:13px;cursor:pointer}
+.note{background:var(--warn);border-left:4px solid var(--warnline);border-radius:6px;padding:10px 14px;margin:10px 0}
+a{color:var(--accent);word-break:break-all}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{border-top:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+footer{color:var(--muted);font-size:13px;margin-top:24px}
+.prompt pre{white-space:pre-wrap;font-family:-apple-system,"Segoe UI","Microsoft JhengHei",sans-serif;font-size:15px}
+nav.top{margin:0 0 18px;font-size:15px}
+</style>
+</head>
+<body>
+<main>
+<nav class="top"><a href="./">安裝說明</a>・<a href="2048.html">練習一：網頁版 2048</a>・<a href="ptt.html">練習二：PTT 爬蟲</a></nav>
+<h1>練習一：用 AI CLI 做網頁版 2048</h1>
+<p class="sub">第 2 週你用 CoursePilot 做過 2048：AI 給程式碼，你複製、貼上、存檔、執行。今天換成 CLI：你只說要什麼，AI 自己建檔、改檔。</p>
+
+<section>
+<h2>1. 開一個專案資料夾</h2>
+<p>在 PowerShell 7 輸入：</p>
+<div class="cmd"><pre>mkdir $HOME\Desktop\game2048
+cd $HOME\Desktop\game2048</pre><button>複製</button></div>
+<p>然後啟動任一個 AI 工具：<code>agy</code>、<code>codex</code> 或 <code>opencode</code>。</p>
+<div class="note">AI 要建立檔案或執行指令時會先問你。看清楚它要做什麼，再選「允許」。</div>
+</section>
+
+<section>
+<h2>2. 第一句話：做出遊戲</h2>
+<div class="cmd prompt"><pre>在這個資料夾做一個網頁版 2048 遊戲，全部寫在 index.html 一個檔案裡。用方向鍵操作，畫面上要顯示分數。做好之後用瀏覽器幫我打開。</pre><button>複製</button></div>
+<p>打開桌面的 <code>game2048</code> 資料夾，看看是不是多了一個 <code>index.html</code>。你沒有存過任何檔案。</p>
+</section>
+
+<section>
+<h2>3. 一句一句改</h2>
+<p>每改完一次，回到瀏覽器按 <code>F5</code> 重新整理，看看變了什麼。</p>
+<div class="cmd prompt"><pre>加上最高分紀錄，關掉瀏覽器再打開也要記得。</pre><button>複製</button></div>
+<div class="cmd prompt"><pre>加一個「重新開始」按鈕。</pre><button>複製</button></div>
+<div class="cmd prompt"><pre>把配色改成深藍色系，數字越大顏色越亮。</pre><button>複製</button></div>
+<div class="cmd prompt"><pre>方塊移動和合併的時候加上動畫。</pre><button>複製</button></div>
+<p>之後自由發揮：加音效、改成 5×5、做一個「復原上一步」……你想得到的都可以說說看。</p>
+</section>
+
+<section>
+<h2>4. 想一想</h2>
+<ul>
+<li>第 2 週改一個地方，你要做幾個動作？今天呢？</li>
+<li>AI 改壞了的時候，你怎麼讓它修回來？</li>
+</ul>
+</section>
+<footer>中華大學・徐聖訓老師</footer>
+</main>
+<script>
+document.querySelectorAll(".cmd button").forEach(function(b){
+  b.addEventListener("click",function(){
+    var t=b.previousElementSibling.textContent;
+    navigator.clipboard.writeText(t).then(function(){b.textContent="已複製";setTimeout(function(){b.textContent="複製"},1500)});
+  });
+});
+</script>
+</body>
+</html>
