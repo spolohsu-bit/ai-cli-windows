@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 命令列工具安裝</title>
+<style>
+:root{--bg:#fafaf8;--fg:#1f2328;--muted:#5d6570;--card:#fff;--line:#e3e3de;--code:#f2f2ee;--accent:#0b6bcb;--warn:#fff6e0;--warnline:#e8c46a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e6e6e3;--muted:#9aa1ab;--card:#1d2024;--line:#2e3238;--code:#262a2f;--accent:#5aa7f0;--warn:#2d2718;--warnline:#8a7230}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 -apple-system,"Segoe UI","Microsoft JhengHei","PingFang TC",sans-serif}
+main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.7rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 28px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 20px 12px;margin:0 0 18px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h2 .tag{font-size:.8rem;font-weight:500;color:var(--muted);margin-left:6px}
+p,li{margin:6px 0}
+ol,ul{padding-left:22px}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font:14px/1.5 Consolas,"SF Mono",monospace}
+.cmd{position:relative;margin:10px 0 14px}
+.cmd pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:12px 70px 12px 14px;margin:0;overflow-x:auto;font:14px/1.6 Consolas,"SF Mono",monospace;white-space:pre}
+.cmd button{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:6px;padding:3px 10px;font-size:13px;cursor:pointer}
+.note{background:var(--warn);border-left:4px solid var(--warnline);border-radius:6px;padding:10px 14px;margin:10px 0}
+a{color:var(--accent);word-break:break-all}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{border-top:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+footer{color:var(--muted);font-size:13px;margin-top:24px}
+</style>
+</head>
+<body>
+<main>
+<h1>AI 命令列工具安裝（學校 Windows 版）</h1>
+<p class="sub">Python實用應用專題・第 4 週・2026/9/29</p>
+
+<section>
+<h2>步驟 0：確認電腦版本</h2>
+<ol>
+<li>按 <code>Win + R</code>，輸入 <code>winver</code>，版本號要 <strong>1809 以上</strong>。</li>
+<li>開 PowerShell，輸入下面這行。顯示 5.1 的話，照步驟 1 更新。</li>
+</ol>
+<div class="cmd"><pre>$PSVersionTable.PSVersion</pre><button>複製</button></div>
+</section>
+
+<section>
+<h2>步驟 1：更新 PowerShell 到 7</h2>
+<p>舊的 PowerShell 5.1 在舊電腦上下載檔案常失敗（錯誤訊息是 <code>Could not create SSL/TLS secure channel</code>）。PowerShell 7 沒有這個問題。</p>
+<ol>
+<li>下載安裝檔（不經過 Microsoft Store）：<br><a href="https://github.com/PowerShell/PowerShell/releases/download/v7.6.6/PowerShell-7.6.6-win-x64.msi">PowerShell-7.6.6-win-x64.msi</a></li>
+<li>安裝時一路按「下一步」。</li>
+<li>從開始選單打開「<strong>PowerShell 7</strong>」（黑色圖示）。以下步驟都在這個視窗裡做。</li>
+<li>先執行一次這行，允許執行腳本。跳出問題時輸入 <code>Y</code>。</li>
+</ol>
+<div class="cmd"><pre>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</pre><button>複製</button></div>
+</section>
+
+<section>
+<h2>步驟 2：Antigravity<span class="tag">Google 帳號</span></h2>
+<div class="cmd"><pre>irm https://antigravity.google/cli/install.ps1 | iex</pre><button>複製</button></div>
+<p>裝完<strong>關掉視窗、重開 PowerShell 7</strong>，輸入 <code>agy</code>。第一次會開瀏覽器，用 Google 帳號登入。</p>
+</section>
+
+<section>
+<h2>步驟 3：Codex<span class="tag">ChatGPT 帳號</span></h2>
+<div class="cmd"><pre>$env:CODEX_RELEASE="0.156.1"
+irm https://chatgpt.com/codex/install.ps1 | iex</pre><button>複製</button></div>
+<ul>
+<li>這是命令列版，<strong>不經過 Microsoft Store</strong>。瀏覽器如果跳出 Store，代表裝到桌面版 App 了，請改用上面的指令。</li>
+<li>版本固定在 0.156.1，因為 9 月出的 0.157、0.158 兩版在 Windows 10 上會壞。</li>
+<li>裝完重開視窗，輸入 <code>codex</code>，用 ChatGPT 帳號登入。</li>
+</ul>
+<div class="note">
+<p><strong>出現 <code>Access is denied</code> 或 <code>daemon</code> 字樣</strong>：改用下面這行啟動。</p>
+<div class="cmd"><pre>codex --no-daemon</pre><button>複製</button></div>
+<p><strong>輸入 <code>codex</code> 完全沒反應</strong>：電腦缺 VC++ 元件，下載安裝 <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">vc_redist.x64.exe</a> 即可。</p>
+</div>
+</section>
+
+<section>
+<h2>步驟 4：OpenCode<span class="tag">免費、不用帳號</span></h2>
+<p>整段一起複製、貼上執行：</p>
+<div class="cmd"><pre>$dir = "$env:LOCALAPPDATA\opencode\bin"
+New-Item -ItemType Directory -Force $dir | Out-Null
+Invoke-WebRequest https://github.com/anomalyco/opencode/releases/latest/download/opencode-windows-x64-baseline.zip -OutFile "$env:TEMP\opencode.zip"
+Expand-Archive "$env:TEMP\opencode.zip" -DestinationPath $dir -Force
+[Environment]::SetEnvironmentVariable("Path", "$dir;" + [Environment]::GetEnvironmentVariable("Path","User"), "User")</pre><button>複製</button></div>
+<ul>
+<li>檔案約 180 MB，下載要等一下。</li>
+<li>裝完重開視窗，輸入 <code>opencode</code>。進去後輸入 <code>/models</code>，選 <strong>Big Pickle</strong> 或其他標示 Free 的模型。</li>
+</ul>
+<div class="note">免費模型的對話可能被拿去訓練模型，<strong>不要貼個人資料</strong>。</div>
+</section>
+
+<section>
+<h2>常見問題</h2>
+<table>
+<tr><th>看到的訊息</th><th>處理方式</th></tr>
+<tr><td>「不是內部或外部命令」</td><td>關掉 PowerShell 視窗重開</td></tr>
+<tr><td><code>running scripts is disabled</code></td><td>回到步驟 1 第 4 點</td></tr>
+<tr><td>瀏覽器跳出 Microsoft Store</td><td>裝錯成桌面版了，改用上面的指令</td></tr>
+<tr><td>額度用完</td><td>免費帳號額度有限，換另一個工具繼續</td></tr>
+</table>
+</section>
+
+<footer>中華大學・徐聖訓老師</footer>
+</main>
+<script>
+document.querySelectorAll('.cmd button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.previousElementSibling.textContent;
+    navigator.clipboard.writeText(t).then(function(){b.textContent='已複製';setTimeout(function(){b.textContent='複製'},1500)});
+  });
+});
+</script>
+</body>
+</html>
