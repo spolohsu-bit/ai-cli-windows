@@ -63,11 +63,10 @@ footer{color:var(--muted);font-size:13px;margin-top:24px}
 
 <section>
 <h2>步驟 3：Codex<span class="tag">ChatGPT 帳號</span></h2>
-<div class="cmd"><pre>$env:CODEX_RELEASE="0.156.1"
-irm https://chatgpt.com/codex/install.ps1 | iex</pre><button>複製</button></div>
+<div class="cmd"><pre>powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "irm https://chatgpt.com/codex/install.ps1 | iex"</pre><button>複製</button></div>
 <ul>
+<li>整行一起複製。PowerShell 7、舊版 PowerShell、命令提示字元（cmd）都可以貼上執行。</li>
 <li>這是命令列版，<strong>不經過 Microsoft Store</strong>。瀏覽器如果跳出 Store，代表裝到桌面版 App 了，請改用上面的指令。</li>
-<li>版本固定在 0.156.1，因為 9 月出的 0.157、0.158 兩版在 Windows 10 上會壞。</li>
 <li>裝完重開視窗，輸入 <code>codex</code>，用 ChatGPT 帳號登入。</li>
 </ul>
 <div class="note">
